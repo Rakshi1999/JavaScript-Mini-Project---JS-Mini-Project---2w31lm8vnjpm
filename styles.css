@@ -1,1 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    background-color: whitesmoke;
+    box-shadow: 0.1rem 0.1rem 4px grey;
+}
+
+#nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#nav-bar li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#nav-bar li a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 200;
+    color: black;
+    transition: 0.2s ease-in;
+}
+
+#nav-bar li a:hover,
+#nav-bar li a.active{
+    color: cadetblue;
+}
+
+#nav-bar li a.active::after,
+#nav-bar li a:hover::after{
+  content: "";
+  width: 30%;
+  height: 2px;
+  background-color: cadetblue;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+
+}
 
