@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+.section-padding{
+    padding: 40px 80px;
+}
 
 #header{
     display: flex;
@@ -14,7 +17,7 @@
     position: sticky;
     top: 0px;
     left: 0px;
-
+    z-index: 999;
 }
 
 #nav-bar{
@@ -56,7 +59,7 @@
 #banner{
     background-image: url(./components/main\ banner.jpg);
     height: 90vh;
-    width: 100%;
+    width: 100vw;
     background-position: top 30% left 0%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -66,15 +69,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-
 }
 #banner h4,p,h3,h2{
     padding: 5px 0px;
 }
 #banner h4{
     font-size: XXX-large;
-    color: rgb(35, 39, 39);
-    font-weight: bolder;
+    color: rgb(27, 236, 236);
+    font-weight: 900;
+}
+#banner h3{
+    font-size: XX-large;
+    font-weight: 900;
 }
 #banner button{
     margin: 5px 0px;
@@ -90,4 +96,40 @@
     background-color: rgba(234, 199, 199, 0.6);
 }
 
+#feature .feature-box{
+    margin: 10px;
+    width: 160px;
+    text-align: center;
+    box-shadow: 10px 10px 15px rgba(206, 202, 202, 0.6);
+    border: 2px solid rgb(243, 239, 239);
+}
+#feature .feature-box:hover{
+    box-shadow: 10px 10px 20px rgba(206, 202, 202, 1);
 
+}
+#feature .feature-box h6{
+    padding: 8px 10px;
+    color: cadetblue;
+    background-color: rgb(240, 212, 176);
+    font-size: 15px;
+    margin: 0px 20px 5px 20px;
+    border-radius: 8px;
+}
+#feature{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex */
+}
+
+
+/* @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+
+    #header{
+        background-color: brown;
+        width: 1000px;
+    }
+} */
