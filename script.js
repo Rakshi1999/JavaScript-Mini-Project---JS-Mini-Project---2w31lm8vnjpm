@@ -10,6 +10,9 @@ const cartValue = document.getElementById("total-cart-value");
 const register_popup = document.getElementById("register-popup");
 const signUp = document.getElementById("signUp");
 const logout = document.getElementById("logout");
+const signupuserName = document.getElementById("name");
+const signupuserEmail = document.getElementById("email");
+const signupuserPassword = document.getElementById("register-password");
 let userLoggedIn = false;
 let confirmUserPassword = false;
 let storeData = [];
@@ -87,7 +90,7 @@ function addToCart(i){
         cart_list.insertAdjacentHTML("beforeend",product);
 }
 
-function  calulateCartValue(){
+function  calculateCartValue(){
     let total = 0;
     cart.forEach((obj)=>{
         total+=(obj.price*obj.qty);
@@ -103,7 +106,7 @@ function handleCart(i){
          showCart();
         }else{
             addToCart(i);
-            calulateCartValue();
+            calculateCartValue();
             showCart();
             let timeId = setTimeout(()=>{
             showCart();
@@ -111,7 +114,7 @@ function handleCart(i){
         }
     }else{
         addToCart(i);
-        calulateCartValue();
+        calculateCartValue();
         showCart();
         let timeId = setTimeout(()=>{
             showCart();
@@ -140,7 +143,7 @@ function removeFromCart(id){
     })
     console.log(cart);
     refreshCart();
-    calulateCartValue();
+    calculateCartValue();
 }
 function cartQtyIncrement(id){
     // console.log(id);
@@ -152,7 +155,7 @@ function cartQtyIncrement(id){
     console.log(cart);
     cart_list.innerText=null;
     refreshCart();
-    calulateCartValue();
+    calculateCartValue();
 }
 function cartQtyDecrement(id){
     // console.log(id);
@@ -168,7 +171,7 @@ function cartQtyDecrement(id){
     // console.log(cart);
     cart_list.innerText=null;
     refreshCart();
-    calulateCartValue();
+    calculateCartValue();
 }
 
 
@@ -181,8 +184,6 @@ let loader = document.getElementById("preloader");
 setTimeout(()=>{
     loader.style.display="none";
 },4000)
-
-// window.addEventListener("load",()=>{loader.style.display="none"});
 
 const obj={
     userName:"",
@@ -207,9 +208,9 @@ function registerHandle(event){
 }
 
 function onChangeHandler(){
-    obj.userName = document.getElementById("name").value;
-    obj.userEmail = document.getElementById("email").value;
-    obj.password = document.getElementById("register-password").value;
+    obj.userName = signupuserName.value;
+    obj.userEmail = signupuserEmail.value;
+    obj.password = signupuserPassword.value;
 }
 
 function confirmPassword(){
@@ -226,6 +227,11 @@ function confirmPassword(){
 }
 
 signUp.onclick=()=>{
+    signupuserName.value="";
+    signupuserEmail.value="";
+    signupuserPassword.value="";
+    document.getElementById("confirmpassword").value="";
+    document.getElementById("confirmpassword").style.border="1px solid black";
     register_popup.showModal();
 }
 
