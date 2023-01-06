@@ -229,11 +229,15 @@ signUp.onclick=()=>{
     register_popup.showModal();
 }
 
-function checkLogin(){
+function checkLogin(event){
+    event.preventDefault();
     let Email = document.getElementById("useremail").value;
     let password = document.getElementById("password").value;
     userDataInLocal =JSON.parse(localStorage.getItem("userData"));
     console.log(userDataInLocal);
+    if(userDataInLocal===null){
+        return(alert("User does not exists, Sign up first"));
+    }
     userDataInLocal.forEach((obj)=>{
         if(obj.userEmail===Email){
             if(obj.password===password){
