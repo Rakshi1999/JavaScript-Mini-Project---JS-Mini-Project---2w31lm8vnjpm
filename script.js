@@ -1,4 +1,3 @@
-const temp = document.getElementById("template");
 const cartShow = document.getElementById("mycart");
 const cartHeader = document.getElementById("cart-header");
 const cartClose = document.getElementById("cart-close");
@@ -17,7 +16,8 @@ let userLoggedIn = false;
 let confirmUserPassword = false;
 let storeData = [];
 let cart=[];
-// let search = document.getElementById("search-bar");
+
+
 fetch("https://fakestoreapi.com/products")
 .then(res=> res.json())
 .then((data)=>{
@@ -44,7 +44,7 @@ cartHeader.addEventListener("click",showCart);
 cartClose.addEventListener("click",showCart);
 closePopUpBtn.addEventListener("click",()=>{modal.close()});
 profileLogin.addEventListener("click",()=>{
-    console.log(userLoggedIn);
+    // console.log(userLoggedIn);
     if(userLoggedIn){
         logout.focus();
     }else{
@@ -95,7 +95,7 @@ function  calculateCartValue(){
     cart.forEach((obj)=>{
         total+=(obj.price*obj.qty);
     })
-    console.log(total.toFixed(2));
+    // console.log(total.toFixed(2));
     cartValue.innerText = total.toFixed(2);
 }
 
@@ -126,7 +126,6 @@ function refreshCart(){
       cart.forEach((obj)=>{
             let product = cartProductContainer(obj);
             cart_list.insertAdjacentHTML("beforeend",product);
-            // console.log(obj.qty);
         })
     }else{
         cart_list.innerText=null;
@@ -134,14 +133,11 @@ function refreshCart(){
 }
 function removeFromCart(id){
     cart_list.innerText=null;
-    console.log(cart,id);
+    // console.log(cart,id);
     cart = cart.filter((obj)=>{
-        if(obj.id!==id){
-            console.log("inside");
-            return obj;
-        }
+        return obj.id!==id;
     })
-    console.log(cart);
+    // console.log(cart);
     refreshCart();
     calculateCartValue();
 }
