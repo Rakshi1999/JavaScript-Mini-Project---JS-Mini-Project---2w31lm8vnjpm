@@ -33,10 +33,39 @@ body{
 .container div{
    margin:0.8rem;
 }
+.banner{
+  background-color: #DEF2F1;
+  width: 100vw;
+  height: 80vh;
+  background-image: url('./black-friday-elements-assortment.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
+.banner div{
+  /* background-color: black; */
+  color: #ceecea;
+  width: 300px;
+  position: relative;
+  left:10%;
+  top:40%;
+  font-size: x-large;
+  text-align: center;
+}
+.expression,.percentage{
+  display: inline-block;
+}
+.percentage{
+  color: rgb(245, 61, 44);
+}
+.expression{
+  color: rgb(19, 119, 19);
+}
 .hide{
   display: none;
 }
+
 #logout{
   width: 30px;
 }
@@ -49,16 +78,25 @@ body{
   min-height: 300px;
   padding: 1.5rem;
   border-radius: 5px;
+  border: 1px solid black;
   background-color: whitesmoke;
   box-shadow: 5px 5px 4px rgb(217, 214, 214),-5px -5px 4px rgb(217, 214, 214);
+}
+.modal::backdrop{
+  background-color: lightblue;
+  opacity: 0.6;
 }
 .modal #popup-close{
   position: absolute;
   top: 20px;
   right: 20px;
   width: 30px;
+  transition: 0.2s ease-in-out;
 }
-
+.modal #popup-close:hover{
+  transform: scale(1.5);
+  color: red;
+}
 .toggle-button{
   /* outline: 2px solid black; */
   position: absolute;
@@ -156,6 +194,11 @@ body{
   left:20px;
   font-size: larger;
   font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+#cart-close:hover{
+  transform: scale(1.5);
+  color: red;
 }
 .cart-heading{
   margin: 2rem 0;
@@ -192,6 +235,10 @@ body{
 .cart-container img{
   width: 50px;
   height: 50px;
+  transition: 0.2s ease-in-out;
+}
+.cart-container img:hover{
+  transform: scale(1.1);
 }
 
 #total-cart-value{
@@ -201,7 +248,7 @@ body{
 .add-to-cart{
   position: absolute;
   bottom:0;
-  right:5px;
+  right:8px;
   width: 135px;
   padding: 0.5rem 1rem;
   background-color: orange;
@@ -217,7 +264,7 @@ body{
 }
 
 .show{
-  width: 300px;
+  width: 340px;
 }
 
 .header{
@@ -238,7 +285,6 @@ body{
 }
 .cart-profile{
   display: flex;
-  /* justify-content: space-around; */
 }
 .cart-profile div{
   margin: 0 1.5rem;
@@ -263,7 +309,11 @@ body{
   font-size: larger;
   padding: 1rem;
   font-weight: 700;
+}
+.nav-bar li a{
+  padding: 0.5rem 0.9rem;
   transition: 0.2s ease-in-out;
+  border-radius: 50px;
 }
 
 .title{
@@ -273,9 +323,12 @@ body{
   font-size:x-large;
 }
 
-.nav-bar li:hover{
+.nav-bar li a:hover,
+.active{
   background-color: rgb(219, 219, 219);
+  color: #17A76C;
 }
+
 .nav-bar a{
   text-decoration: none;
   color:cadetblue;
@@ -348,20 +401,28 @@ body{
   font-size: larger;
   font-weight: 350;
 }
-@media screen and (max-width:880px) {
+@media screen and (max-width:1000px) {
  
   .header{
     padding: 0.6rem 0.5rem;
   }
   .nav-bar li{
-    margin: 0 1rem;
+    margin: 0rem 0.5rem;
     padding: 0.5rem;
+  }
+  .nav-bar li a{
+    margin: 0rem 0.5rem;
+    padding: 0.2rem;
     font-weight: 700;
+  }
+
+  .banner{
+    background-position:center;
   }
   
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:675px) {
  
   .header{
     padding: 0.6rem 0.5rem;
@@ -404,5 +465,10 @@ body{
   }
   .modal{
     padding: 0.5rem;
+  }
+  .banner{
+    /* background-size:cover; */
+    background-position:center;
+    /* background-repeat: no-repeat; */
   }
 }
