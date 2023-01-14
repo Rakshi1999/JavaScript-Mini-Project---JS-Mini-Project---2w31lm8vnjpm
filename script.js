@@ -179,7 +179,7 @@ toggle[0].addEventListener("click",()=>{navbar.classList.toggle("hide")});
 let loader = document.getElementById("preloader");
 setTimeout(()=>{
     loader.style.display="none";
-},4000)
+},2000)
 
 const obj={
     userName:"",
@@ -255,3 +255,26 @@ function checkLogin(event){
         }
     })
 }
+
+document.getElementById("search-value").addEventListener("keyup",search);
+function search(){
+    let input = document.getElementById("search-value").value;
+    document.getElementById("list").innerHTML="";
+    storeData.forEach((obj,index)=>{
+        if(obj.title.toUpperCase().includes(input.toUpperCase())){
+                const temp = `
+                <div class="product-container" id=${index}>
+                <div class="product-image"><img src=${obj.image} /></div>
+                <div class="product-title">${obj.title}</div>
+                <div class="product-price"><h3>${obj.price} $</h3></div>
+                <div class="product-rating">${(obj.rating.rate)}/5</div>
+                <div class="add-to-cart" onclick="handleCart(${index})">Add to cart <i class="fa-solid fa-cart-plus"></i></div>
+                </div>`;
+                document.getElementById("list").insertAdjacentHTML("beforeend",temp);
+        }
+    })
+}
+
+document.getElementById("search-close").addEventListener("click",()=>{
+  document.getElementById("search-value").value = "";
+})
