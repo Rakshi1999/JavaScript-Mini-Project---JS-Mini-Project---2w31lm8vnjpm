@@ -16,6 +16,7 @@ let userLoggedIn = false;
 let confirmUserPassword = false;
 let storeData = [];
 let cart=[];
+let userEmail = "";
 
 
 fetch("https://fakestoreapi.com/products")
@@ -58,6 +59,16 @@ logout.onclick = () =>{
     userLoggedIn=false;
     document.getElementById("profileName").innerText="";
     logout.classList.add("hide");
+    setCart(cart);
+    cart=[];
+    refreshCart();
+    calculateCartValue();
+}
+
+function setCart(data){
+    console.log(data);
+    // localStorage.setItem(userEmail,JSON.stringify(data));
+    localStorage.setItem(userEmail,JSON.stringify(data));
 }
 
 
@@ -82,12 +93,17 @@ function cartProductContainer(obj){
 }
 
 function addToCart(i){
-        let obj = storeData[i];
-        obj["qty"] = 1;
-        cart.push(obj);
-        let product = cartProductContainer(obj);
-        // console.log(product);
-        cart_list.insertAdjacentHTML("beforeend",product);
+        if(userLoggedIn){
+            let obj = storeData[i];
+            obj["qty"] = 1;
+            cart.push(obj);
+            let product = cartProductContainer(obj);
+            // console.log(product);
+            cart_list.insertAdjacentHTML("beforeend",product);
+        }else{
+            let temp = document.getElementById('popup');
+            temp.showModal();
+        }
 }
 
 function  calculateCartValue(){
@@ -121,6 +137,7 @@ function handleCart(i){
         },1000)
     }
 }
+
 function refreshCart(){
     if(cart.length!=0){
       cart.forEach((obj)=>{
@@ -131,6 +148,7 @@ function refreshCart(){
         cart_list.innerText=null;
     }
 }
+
 function removeFromCart(id){
     cart_list.innerText=null;
     // console.log(cart,id);
@@ -141,6 +159,7 @@ function removeFromCart(id){
     refreshCart();
     calculateCartValue();
 }
+
 function cartQtyIncrement(id){
     // console.log(id);
     cart.forEach((obj)=>{
@@ -153,6 +172,7 @@ function cartQtyIncrement(id){
     refreshCart();
     calculateCartValue();
 }
+
 function cartQtyDecrement(id){
     // console.log(id);
     cart.forEach((obj)=>{
@@ -170,7 +190,6 @@ function cartQtyDecrement(id){
     calculateCartValue();
 }
 
-
 const toggle = document.getElementsByClassName("toggle-button");
 const navbar = document.getElementById("nav-class");
 // console.log(navbar);
@@ -179,13 +198,14 @@ toggle[0].addEventListener("click",()=>{navbar.classList.toggle("hide")});
 let loader = document.getElementById("preloader");
 setTimeout(()=>{
     loader.style.display="none";
-},2000)
+},1500)
 
 const obj={
     userName:"",
     userEmail:"",
     password:"",
 } 
+
 function registerHandle(event){
     event.preventDefault();
     if(!confirmUserPassword){
@@ -245,8 +265,12 @@ function checkLogin(event){
             if(obj.password===password){
                 document.getElementById("profileName").innerText = obj.userName;
                 modal.close();
+                userEmail = Email;
                 userLoggedIn = true;
+                getCartItem(Email);
                 logout.classList.remove("hide");
+                document.getElementById("useremail").value="";
+                document.getElementById("password").value="";
             }else{
                 alert("Password does not match");
             }
@@ -254,6 +278,15 @@ function checkLogin(event){
             alert("User does't exists");
         }
     })
+}
+
+function getCartItem(email){
+    let data = JSON.parse(localStorage.getItem(email));
+    if(data){
+        cart = data;
+        refreshCart();
+        calculateCartValue();
+    }
 }
 
 document.getElementById("search-value").addEventListener("keyup",search);

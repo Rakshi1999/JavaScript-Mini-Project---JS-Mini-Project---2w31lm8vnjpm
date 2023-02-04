@@ -6,7 +6,8 @@
 body{
   /* background-color: #c8EFF9; */
   /* background-color: #D1E8E2; */
-  background-color: #e5e4e2;
+  /* background-color: #ffe8af; */
+  background-color: #c8d8e4;
 }
 
 #preloader{
@@ -33,25 +34,45 @@ body{
 .container div{
    margin:0.8rem;
 }
-.banner{
+
+.header{
+  /* background-color: #C5CBE3; */
   background-color: #DEF2F1;
+  /* background-color: #2b6777; */
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height:70px;
+  padding: 0.6rem 1.5rem;
+  align-items: center;
+  box-shadow: 3px 3px 2px rgb(173, 168, 168);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+
+.banner{
+  /* background-color: #DEF2F1; */
   width: 100vw;
   height: 80vh;
   background-image: url('./black-friday-elements-assortment.jpg');
   background-size:cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  opacity: 0.9;
 }
 
 .banner div{
-  /* background-color: black; */
-  color: #ffffff;
+  color: #1b1919;
   width: 300px;
   position: relative;
   left:10%;
   top:40%;
   font-size: x-large;
   text-align: center;
+  opacity: 1;
 }
 .expression,.percentage{
   display: inline-block;
@@ -69,6 +90,8 @@ body{
 #logout{
   width: 30px;
 }
+
+
 .modal{
   position: relative;
   top: 50%;
@@ -175,6 +198,8 @@ body{
   background-color: rgb(89, 224, 89);
 }
 
+/* Cart styles */
+
 .cart{
   background-color: rgb(241, 243, 243);
   width: 0%;
@@ -263,13 +288,23 @@ body{
   background-color: yellowgreen;
 }
 
+.cart-profile{
+  display: flex;
+}
+.cart-profile div{
+  margin: 0 1.5rem;
+}
+.cart-profile div i{
+  font-size: larger;
+}
+
 .show{
   width: 340px;
 }
 
-.header{
-  /* background-color: #C5CBE3; */
-  /* background-color: #D8C3A5; */
+/* .header{
+  background-color: #C5CBE3;
+  background-color: #D8C3A5;
   background-color: #DEF2F1;
   display: flex;
   justify-content: space-between;
@@ -282,8 +317,8 @@ body{
   top: 0;
   left: 0;
   z-index: 999;
-}
-.cart-profile{
+} */
+/* .cart-profile{
   display: flex;
 }
 .cart-profile div{
@@ -291,7 +326,7 @@ body{
 }
 .cart-profile div i{
   font-size: larger;
-}
+} */
 .logo img{
   width: 60px;
   height: 60px;
@@ -442,6 +477,20 @@ body{
 .footer-socialmedia div i{
   font-size: larger;
   font-weight: 350;
+}
+.fa-brands:hover{
+  transform: scale(1.8);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.fa-facebook:hover{
+  color: rgb(72, 72, 218);
+}
+.fa-instagram:hover{
+  color: rgb(239, 45, 84);
+}
+.fa-github:hover{
+  color: white;
 }
 @media screen and (max-width:1000px) {
  

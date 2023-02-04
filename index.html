@@ -24,8 +24,8 @@
        <li><a href="./back-up.html">About Us</a></li>
        <li><a href="./back-up.html">Shop</a></li>
        <li><a href="./back-up.html">Contact us</a></li>
-       <li id="cart-header"><i class="fa-solid fa-cart-shopping"></i></li>
-       <li id="profile-header"><i class="fa-solid fa-user"></i><span id="profileName"></span></li>
+       <li id="cart-header"><a href="#"><i class="fa-solid fa-cart-shopping" style="color: rgb(0, 0, 0);"></i></a></li>
+       <li id="profile-header"><a href="#"><i class="fa-solid fa-user" style="color: black;"></i><span id="profileName"></span></a></li>
        <button id="logout" class="logout-btn hide"><i class="fa-solid fa-power-off"></i></button>
      </ul>
     </div>
@@ -48,7 +48,7 @@
     <button class="btn" id="popup-close"><i class="fa-solid fa-xmark"></i></button>
     <br/>
     <form class="login-form" onsubmit="checkLogin(event)">
-        <label for="useremail" >User-Email:</label>
+        <label for="useremail" >UserEmail:</label>
         <input type="email" id="useremail" required/>
       <br/>
         <label for="password">Password:</label>
