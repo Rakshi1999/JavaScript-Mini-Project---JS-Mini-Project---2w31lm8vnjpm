@@ -519,9 +519,10 @@ body{
   .header{
     padding: 0.6rem 0.5rem;
   }
+  
   .nav-bar li{
-    margin: 0 1rem;
-    padding: 0.1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
     font-weight: 500;
   }
 
@@ -544,9 +545,10 @@ body{
     transition: 0.2s ease-in-out;
     /* right: -500px; */
   }
-  .nav-bar li{
+  /* .nav-bar li{
     padding: 1rem;
-  }
+  } */
+
   .footer{
     justify-content: space-around;
     align-items: center;
