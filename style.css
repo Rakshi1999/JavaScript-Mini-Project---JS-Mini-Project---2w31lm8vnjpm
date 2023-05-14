@@ -4,10 +4,12 @@
   box-sizing: border-box;
 }
 body{
+  background-color: #ffffff;
   /* background-color: #c8EFF9; */
   /* background-color: #D1E8E2; */
   /* background-color: #ffe8af; */
-  background-color: #c8d8e4;
+  /* background-color: #c8d8e4; */
+  /* background-color: #96c6e6ae; */
 }
 
 #preloader{
@@ -209,7 +211,7 @@ body{
 .cart{
   background-color: rgb(241, 243, 243);
   width: 0%;
-  height: 60vh;
+  height: 100vh;
   position: fixed;
   top: 73px;
   right: 0;
@@ -248,14 +250,13 @@ body{
   display: block;
   margin: 0.2rem auto ;
   width: 80%;
-  /* height: 100px; */
-  /* border:2px solid black; */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 .cart-outter{
   /* outline: 2px solid black; */
+  border-bottom: 2px solid #17A76C;
   padding: 0.5rem 0rem;
   margin: 0.5rem 0rem; 
 }
@@ -267,6 +268,7 @@ body{
   width: 50px;
   height: 50px;
   transition: 0.2s ease-in-out;
+  mix-blend-mode:darken;
 }
 .cart-container img:hover{
   transform: scale(1.1);
@@ -329,33 +331,6 @@ body{
   width: 340px;
 }
 
-/* .header{
-  background-color: #C5CBE3;
-  background-color: #D8C3A5;
-  background-color: #DEF2F1;
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height:70px;
-  padding: 0.6rem 1.5rem;
-  align-items: center;
-  box-shadow: 3px 3px 2px rgb(173, 168, 168);
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 999;
-} */
-/* .cart-profile{
-  display: flex;
-}
-.cart-profile div{
-  margin: 0 1.5rem;
-}
-.cart-profile div i{
-  font-size: larger;
-} */
-
-
 .nav-bar{
   /* background-color: bisque; */
   display: flex;
@@ -402,10 +377,11 @@ body{
   width: 250px;
   /* height: 320px; */
   /* outline: 2px solid black; */
-  background-color: white;
+  /* background-color: white; */
+  /* background-color: ; */
   padding: 1rem;
   margin: 1rem 1rem;
-  box-shadow: 0px 0px 5px rgb(86, 80, 80),-0px -0px 4px rgb(86, 80, 80);
+  box-shadow: 0px 0px 5px 1px rgb(86, 80, 80);
   /* overflow-y:auto; */
   border-radius: 5px;
   position: relative;
@@ -414,7 +390,7 @@ body{
 }
 
 #list .product-container:hover{
-  box-shadow: 5px 5px 20px whitesmoke,-5px -5px 20px whitesmoke;
+  box-shadow: 0px 0p 5px 2px whitesmoke;
   /* cursor: pointer; */
   transform: scale(1.1);
 }
@@ -429,6 +405,7 @@ body{
   height: 200px;
   display: block;
   margin: 0 auto;
+  mix-blend-mode:darken;
 }
 
 .footer{

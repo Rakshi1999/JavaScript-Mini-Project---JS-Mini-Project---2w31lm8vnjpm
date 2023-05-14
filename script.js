@@ -27,7 +27,7 @@ fetch("https://fakestoreapi.com/products")
         <div class="product-container" id=${index}>
         <div class="product-image"><img src=${obj.image} /></div>
         <div class="product-title">${obj.title}</div>
-        <div class="product-price"><h3>${obj.price} $</h3></div>
+        <div class="product-price"><h3>${obj.price} <span style="color:green">$</span></h3></div>
         <div class="product-rating">${obj.rating.rate}/5</div>
         <div class="add-to-cart" id=${index} onclick="handleCart(${index})"><i class="fa-solid fa-cart-plus"></i></div>
         </div>`;
