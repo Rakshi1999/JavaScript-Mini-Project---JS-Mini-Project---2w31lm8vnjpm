@@ -205,9 +205,9 @@ toggle[0].addEventListener("click", () => {
 });
 
 let loader = document.getElementById("preloader");
-setTimeout(() => {
+window.addEventListener("load", () => {
   loader.style.display = "none";
-}, 1000);
+});
 
 const obj = {
   userName: "",
