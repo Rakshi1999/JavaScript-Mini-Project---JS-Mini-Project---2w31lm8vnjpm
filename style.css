@@ -66,7 +66,7 @@ body{
   background-size:cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .banner div{
@@ -78,6 +78,7 @@ body{
   font-size: x-large;
   text-align: center;
   opacity: 1;
+  background-color: transparent;
 }
 .expression,.percentage{
   display: inline-block;
@@ -275,7 +276,7 @@ body{
   font-size: large;
   font-weight: 700;
 }
-.add-to-cart{
+.add-to-cart,.added-to-cart{
   position: absolute;
   bottom:0;
   right:8px;
@@ -285,6 +286,27 @@ body{
   /* border: 2px solid black; */
   border-radius: 5px;
   transition: 0.3s ease-in-out;
+}
+.add-to-cart::after{
+  content: "ADD TO CART";
+  position: absolute;
+  /* background-color: #17A76C; */
+  font-size: 13px;
+  right: 8px;
+}
+.added-to-cart:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.added-to-cart{
+  background-color:  yellowgreen;
+}
+.added-to-cart::after{
+  content: "IN CART";
+  position: absolute;
+  /* background-color: #17A76C; */
+  font-size: 13px;
+  right: 8px;
 }
 
 .add-to-cart:hover{
