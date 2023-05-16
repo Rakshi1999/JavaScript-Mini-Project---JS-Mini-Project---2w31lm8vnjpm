@@ -12,7 +12,7 @@ const logout = document.getElementById("logout");
 const signupuserName = document.getElementById("name");
 const signupuserEmail = document.getElementById("email");
 const signupuserPassword = document.getElementById("register-password");
-let userLoggedIn = false;
+let userLoggedIn = true;
 let confirmUserPassword = false;
 let storeData = [];
 let cart = [];
@@ -45,6 +45,7 @@ function showCart() {
 }
 cartHeader.addEventListener("click", showCart);
 cartClose.addEventListener("click", showCart);
+
 closePopUpBtn.addEventListener("click", () => {
   modal.close();
 });
@@ -95,7 +96,7 @@ function cartProductContainer(obj) {
 }
 
 function addToCart(i) {
-//   console.log(event.target);
+  //   console.log(event.target);
   if (userLoggedIn) {
     event.target.classList.remove("add-to-cart");
     event.target.classList.add("added-to-cart");
@@ -155,9 +156,9 @@ function refreshCart() {
 function removeFromCart(id) {
   let collection = document.querySelectorAll(".added-to-cart");
   collection.forEach((ele) => {
-    if (ele.id == id-1) {
-        ele.classList.remove("added-to-cart");
-        ele.classList.add("add-to-cart");
+    if (ele.id == id - 1) {
+      ele.classList.remove("added-to-cart");
+      ele.classList.add("add-to-cart");
     }
   });
   cart_list.innerText = null;
@@ -292,14 +293,46 @@ function checkLogin(event) {
   }
 }
 
-function getCartItem(email){
-    let data = JSON.parse(localStorage.getItem(email));
-    if(data){
-        cart = data;
-        refreshCart();
-        calculateCartValue();
-    }
+function getCartItem(email) {
+  let data = JSON.parse(localStorage.getItem(email));
+  if (data) {
+    cart = data;
+    refreshCart();
+    calculateCartValue();
+  }
 }
+
+document.getElementById("cart-buy").addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Cart Is Empty");
+  } else {
+    document.getElementById("cart-buy-popup").showModal();
+    let totalValue = document.getElementById("total-cart-value").innerText;
+    document.getElementById("totalValue").innerText = totalValue;
+  }
+});
+
+document.getElementById("cart-buy-pay").addEventListener("click", (event) => {
+  event.preventDefault();
+  document.getElementById("cart-buy-popup").close();
+  document.getElementById("orderPlaced").showModal();
+});
+
+document.getElementById("confirm-pay").addEventListener("click", () => {
+  document.getElementById("orderPlaced").close();
+  cart = [];
+  refreshCart();
+  cartValue.innerText = "";
+  let collection = document.querySelectorAll(".added-to-cart");
+  collection.forEach((ele) => {
+    ele.classList.remove("added-to-cart");
+    ele.classList.add("add-to-cart");
+  });
+});
+
+
+
+
 
 document.getElementById("search-value").addEventListener("keyup",search);
 function search(){

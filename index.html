@@ -42,8 +42,33 @@
     <div class="total" id="total">
       Cart Value = <span id="total-cart-value">0</span> $
     </div>
+    <button class="btn btn-buy" id="cart-buy">Buy</button>
+    <dialog id="cart-buy-popup" class="modal">
+      <form action="#" class="payment-popup">
+          <div class="cart-buy-heading">
+            <h3>Payment Details</h3>
+            <p>Amount Payable:<span id="totalValue">0</span style="color:green">$</p>
+          </div>
+          <label>Card Number:</label>
+          <input type="number" placeholder="XXXX-XXXX-XXXX-XXXX" required/>
+          <label>Expiry Date:</label>
+          <input type="date" required/>
+          <label>Cvv:</label>
+          <input type="number" placeholder="XXX" required/>
+          <label>card Holder Name:</label>
+          <input type="text" required />
+          <button type="submit" id="cart-buy-pay">Pay</button>
+      </form>
+    </dialog>
     <div id="cart-list"></div>
   </section>
+  <dialog id="orderPlaced" class="modal">
+    <div class="outter-div">
+      <div class="order-confirm"></div>
+       <h3>Thank You, Order Placed Successfully</h3>
+       <button id="confirm-pay">Continue Shopping</button>
+    </div>
+  </dialog>
   <dialog id="popup" class="modal">
     <button class="btn" id="popup-close"><i class="fa-solid fa-xmark"></i></button>
     <br/>
