@@ -98,7 +98,12 @@ body{
 #logout{
   width: 30px;
 }
-
+#popup-close{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DEF2F1;
+}
 
 .modal{
   position: relative;
@@ -125,7 +130,7 @@ body{
   transition: 0.2s ease-in-out;
 }
 .modal #popup-close:hover{
-  transform: scale(1.5);
+  transform: scale(1.1);
   color: red;
 }
 .toggle-button{

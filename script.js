@@ -47,7 +47,7 @@ cartHeader.addEventListener("click", showCart);
 cartClose.addEventListener("click", showCart);
 
 closePopUpBtn.addEventListener("click", () => {
-  modal.close();
+  document.getElementById("popup").close();
 });
 profileLogin.addEventListener("click", () => {
   // console.log(userLoggedIn);
@@ -56,7 +56,8 @@ profileLogin.addEventListener("click", () => {
   } else {
     document.getElementById("useremail").value = "";
     document.getElementById("password").value = "";
-    modal.showModal();
+    // modal.showModal();
+    document.getElementById("popup").showModal();
   }
 });
 
@@ -128,9 +129,9 @@ function handleCart(i) {
       addToCart(i);
       calculateCartValue();
       showCart();
-//       let timeId = setTimeout(() => {
-//         showCart();
-//       }, 1000);
+      //       let timeId = setTimeout(() => {
+      //         showCart();
+      //       }, 1000);
     }
   } else {
     addToCart(i);
@@ -280,7 +281,8 @@ function checkLogin(event) {
     if (user.password === password) {
       console.log("password match");
       document.getElementById("profileName").innerText = user.userName;
-      modal.close();
+      // modal.close();
+      document.getElementById("popup").close();
       // userEmail = Email;
       userLoggedIn = true;
       // getCartItem(Email);
