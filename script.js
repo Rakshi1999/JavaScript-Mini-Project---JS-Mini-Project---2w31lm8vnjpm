@@ -129,9 +129,10 @@ function handleCart(i) {
       addToCart(i);
       calculateCartValue();
       showCart();
-      //       let timeId = setTimeout(() => {
-      //         showCart();
-      //       }, 1000);
+      let timeId = setTimeout(() => {
+        showCart();
+      }, 1000);
+      clearTimeout(timeId);
     }
   } else {
     addToCart(i);
@@ -140,6 +141,7 @@ function handleCart(i) {
     let timeId = setTimeout(() => {
       showCart();
     }, 1000);
+    clearTimeout(timeId)
   }
 }
 
