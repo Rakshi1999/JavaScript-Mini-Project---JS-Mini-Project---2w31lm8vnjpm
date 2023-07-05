@@ -21,13 +21,13 @@ let userEmail = "";
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
   .then((data) => {
-    // console.log(data);
+    console.log(data);
     storeData = data.map((obj, index) => {
       const temp = `
         <div class="product-container" id=${index}>
         <div class="product-image"><img src=${obj.image} /></div>
         <div class="product-title">${obj.title}</div>
-        <div class="product-price"><h3>${obj.price} <span style="color:green">$</span></h3></div>
+        <div class="product-price"><h3>${(obj.price*82).toFixed(2)} <span style="color:green">&#8377;</span></h3></div>
         <div class="product-rating">${obj.rating.rate}/5</div>
         <div class="add-to-cart" id=${index} onclick="handleCart(${index})"><i class="fa-solid fa-cart-plus"></i></div>
         </div>`;
@@ -38,7 +38,10 @@ fetch("https://fakestoreapi.com/products")
   })
   .catch((error) => {
     console.log("Error Fetching Data", error);
+    let temp= `<h3 style="margin:2rem 0rem; color:red;">Some thing went wrong please refresh the page!!</h3>`
+    document.getElementById("list").insertAdjacentHTML("beforeend", temp);
   });
+
 
 function showCart() {
   cartShow.classList.toggle("show");
@@ -49,6 +52,7 @@ cartClose.addEventListener("click", showCart);
 closePopUpBtn.addEventListener("click", () => {
   document.getElementById("popup").close();
 });
+
 profileLogin.addEventListener("click", () => {
   // console.log(userLoggedIn);
   if (userLoggedIn) {
@@ -62,18 +66,26 @@ profileLogin.addEventListener("click", () => {
 });
 
 logout.onclick = () => {
+  console.log(userEmail + " email");
   userLoggedIn = false;
   document.getElementById("profileName").innerText = "";
   logout.classList.add("hide");
-  setCart(cart);
+  setCart(cart, userEmail);
+  setCookies("UserEmail",null,null);
+  console.log(document.cookie);
   cart = [];
   refreshCart();
   calculateCartValue();
+  let collection = document.querySelectorAll(".added-to-cart");
+  collection.forEach((ele) => {
+    ele.classList.remove("added-to-cart");
+    ele.classList.add("add-to-cart");
+  });
 };
 
-function setCart(data) {
-  console.log(data);
-  localStorage.setItem(userEmail, JSON.stringify(data));
+function setCart(data, email) {
+  // console.log(email);
+  localStorage.setItem(email, JSON.stringify(data));
 }
 
 const cart_list = document.getElementById("cart-list");
@@ -97,7 +109,7 @@ function cartProductContainer(obj) {
 }
 
 function addToCart(i) {
-  //   console.log(event.target);
+    console.log(cart);
   if (userLoggedIn) {
     event.target.classList.remove("add-to-cart");
     event.target.classList.add("added-to-cart");
@@ -141,7 +153,7 @@ function handleCart(i) {
     let timeId = setTimeout(() => {
       showCart();
     }, 1000);
-    clearTimeout(timeId)
+    clearTimeout(timeId);
   }
 }
 
@@ -281,13 +293,14 @@ function checkLogin(event) {
 
   if (user) {
     if (user.password === password) {
-      console.log("password match");
+      // console.log("password match");
       document.getElementById("profileName").innerText = user.userName;
       // modal.close();
       document.getElementById("popup").close();
-      // userEmail = Email;
+      userEmail = Email;
       userLoggedIn = true;
-      // getCartItem(Email);
+      getCartItem(Email);
+      setCookies("UserEmail",user.userEmail,1);
       logout.classList.remove("hide");
       document.getElementById("useremail").value = "";
       document.getElementById("password").value = "";
@@ -297,12 +310,39 @@ function checkLogin(event) {
   }
 }
 
+window.addEventListener('load',()=>{
+  if(document.cookie){
+    let email = document.cookie.split('=')[1];
+    let temp = JSON.parse(localStorage.getItem('userData'));
+    // console.log(email)
+    let user = temp.filter((obj)=>obj.userEmail == email);
+    console.log(user)
+    userEmail = email;
+    userLoggedIn = true;
+    getCartItem(email);
+    logout.classList.remove("hide");
+    document.getElementById("useremail").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById('profileName').innerText = user[0].userName;
+  }
+})
+
 function getCartItem(email) {
+  // console.log(cart+' this is cart!!');
   let data = JSON.parse(localStorage.getItem(email));
   if (data) {
     cart = data;
     refreshCart();
     calculateCartValue();
+    // console.log(cart);
+    // let filteredId = data.filter((obj)=>obj.id);
+    // let collection = document.querySelectorAll(".add-to-cart");
+    // collection.forEach((ele) => {
+    // if (filteredId.includes(ele.id)) {
+    //   ele.classList.remove("add-to-cart");
+    //   ele.classList.add("added-to-cart");
+    // }
+    // });
   }
 }
 
@@ -334,29 +374,43 @@ document.getElementById("confirm-pay").addEventListener("click", () => {
   });
 });
 
-
-
-
-
-document.getElementById("search-value").addEventListener("keyup",search);
-function search(){
-    let input = document.getElementById("search-value").value;
-    document.getElementById("list").innerHTML="";
-    storeData.forEach((obj,index)=>{
-        if(obj.title.toUpperCase().includes(input.toUpperCase())){
-                const temp = `
-                <div class="product-container" id=${index}>
-                <div class="product-image"><img src=${obj.image} /></div>
-                <div class="product-title">${obj.title}</div>
-                <div class="product-price"><h3>${obj.price} $</h3></div>
-                <div class="product-rating">${(obj.rating.rate)}/5</div>
-                <div class="add-to-cart" onclick="handleCart(${index})">Add to cart <i class="fa-solid fa-cart-plus"></i></div>
-                </div>`;
-                document.getElementById("list").insertAdjacentHTML("beforeend",temp);
-        }
-    })
+document.getElementById("search-value").addEventListener("keyup", search);
+function search() {
+  let input = document.getElementById("search-value").value;
+  document.getElementById("list").innerHTML = "";
+  storeData.forEach((obj, index) => {
+    if (obj.title.toUpperCase().includes(input.toUpperCase())) {
+      const temp =  `
+      <div class="product-container" id=${index}>
+      <div class="product-image"><img src=${obj.image} /></div>
+      <div class="product-title">${obj.title}</div>
+      <div class="product-price"><h3>${(obj.price*82).toFixed(2)} <span style="color:green">&#8377;</span></h3></div>
+      <div class="product-rating">${obj.rating.rate}/5</div>
+      <div class="add-to-cart" id=${index} onclick="handleCart(${index})"><i class="fa-solid fa-cart-plus"></i></div>
+      </div>`;
+      document.getElementById("list").insertAdjacentHTML("beforeend", temp);
+    }
+  });
 }
 
-document.getElementById("search-close").addEventListener("click",()=>{
+document.getElementById("search-close").addEventListener("click", () => {
   document.getElementById("search-value").value = "";
-})
+});
+
+function closePaymentPopUp() {
+  document.getElementById("cart-buy-popup").close();
+}
+
+function registerClose(){
+  document.getElementById('register-popup').close();
+}
+
+function setCookies(name,value,days){
+  let date = new Date();
+  date.setTime(date.getTime()+ (days*24*60*60*1000));
+  let day = date.toUTCString();
+  document.cookie = `${name}=${value};expires=${day};path="/"`;
+}
+
+
+// document.getElementById('about-btn').addEventListener('click',()=>{alert()})

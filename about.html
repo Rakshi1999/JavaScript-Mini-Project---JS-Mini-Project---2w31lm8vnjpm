@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopie</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
+    <script src="https://kit.fontawesome.com/ec13a56720.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <Section class="header">
+        <div class="logo"><img src="./Capture1.JPG" alt="logo" /></div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul class="nav-bar hide" id="nav-class">
+           <li><a href="/index.html">Home</a></li>
+           <li><a href="/about.html" class="active">About Us</a></li>
+           <li><a href="/shop.html">Shop</a></li>
+           <li><a href="#content-footer">Contact us</a></li>
+           <li id="cart-header"><a href="#"><i class="fa-solid fa-cart-shopping" style="color: rgb(0, 0, 0);"></i></a></li>
+           <li id="profile-header"><a href="#"><i class="fa-solid fa-user" style="color: black;"></i><span id="profileName"></span></a></li>
+           <button id="logout" class="logout-btn hide"><i class="fa-solid fa-power-off"></i></button>
+         </ul>
+        </div>
+    </section>
+    <section class="cart" id="mycart">
+      <div class="close" id="cart-close"><i class="fa-sharp fa-solid fa-xmark"></i></div>
+      <div class="cart-heading">Your Cart</div>
+      <div class="total" id="total">
+        Cart Value = <span id="total-cart-value">0</span> $
+      </div>
+      <button class="btn btn-buy" id="cart-buy">Buy</button>
+      <dialog id="cart-buy-popup" class="modal">
+        <button class="btn" id="popup-close-payment" onclick="closePaymentPopUp()"><i class="fa-solid fa-xmark"></i></button>
+        <form action="#" class="payment-popup">
+            <div class="cart-buy-heading">
+              <h3>Payment Details</h3>
+              <p>Amount Payable:<span id="totalValue">0</span style="color:green">$</p>
+            </div>
+            <label>Card Number:</label>
+            <input type="number" placeholder="XXXX-XXXX-XXXX-XXXX" required/>
+            <label>Expiry Date:</label>
+            <input type="date" required/>
+            <label>Cvv:</label>
+            <input type="number" placeholder="XXX" required/>
+            <label>Card Holder Name:</label>
+            <input type="text" required />
+            <button type="submit" id="cart-buy-pay">Pay</button>
+        </form>
+      </dialog>
+      <div id="cart-list"></div>
+    </section>
+    <dialog id="orderPlaced" class="modal">
+      <div class="outter-div">
+        <div class="order-confirm"></div>
+         <h3>Thank You, Order Placed Successfully</h3>
+         <button id="confirm-pay">Continue Shopping</button>
+      </div>
+    </dialog>
+    <dialog id="popup" class="modal">
+      <button class="btn" id="popup-close"><i class="fa-solid fa-xmark"></i></button>
+      <br/>
+      <form class="login-form" onsubmit="checkLogin(event)">
+          <!-- <label for="useremail" >UserEmail:</label> -->
+          <fieldset>
+            <legend>UserEmail</legend>
+            <input type="email" id="useremail" required/>
+          </fieldset>
+        <!-- <br/> -->
+          <!-- <label for="password">Password:</label> -->
+          <fieldset>
+            <legend>Password</legend>
+           <input type="password" id="password" required/>
+          </fieldset>
+        <!-- <br/> -->
+        <button class="login-btn">Login</button>
+        <p>New User <a href="#" id="signUp">Sign-up</a></p>
+      </form>
+    </dialog>
+    <dialog id="register-popup" class="modal">
+      <h2>Register here!!!</h2>
+      <form onsubmit="registerHandle(event)">
+        <label for="name">Name</label>
+        <input type="text" id="name" onchange="onChangeHandler()" required/>
+        <br/>
+        <label for="email">Email</label>
+        <input type="email" id="email" onchange="onChangeHandler()" required/>
+        <br/>
+        <label for="password">Password</label>
+        <input type="password" min="6" max="10" id="register-password" onchange="onChangeHandler()" required/>
+        <br/>
+        <label >Confirm Password</label>
+        <input type="password" min="6" max="10" id="confirmpassword" onchange="confirmPassword()" required/>
+        <br/>
+        <button type="submit">Sign-up</button>
+      </form>
+    </dialog>
+    <section class="about-details">
+      <div>
+        <h2>Our Mission</h2>
+        <p class="para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat corrupti, sint tenetur optio officia impedit quas aut id qui vel velit molestiae culpa consequatur reprehenderit adipisci quidem veniam laborum dolores placeat dolorum! Aut voluptas reprehenderit delectus facere reiciendis a corporis minus, dolores ipsum tenetur neque iusto iure exercitationem temporibus rem porro deleniti voluptatibus quaerat rerum amet provident. Pariatur, minima. Nesciunt deserunt adipisci ratione eum laboriosam sequi amet consequuntur unde tempora ut distinctio fuga beatae id aut, deleniti minima placeat cupiditate odit dolores non asperiores quam voluptatibus quas vero. Molestias voluptate incidunt dicta ipsam natus. Adipisci sint odit nihil quas deleniti.</p>
+      </div>
+      <div>
+        <h2>Founders</h2>
+        <div class="founder-container">
+          <div class="founder-deatils">
+            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="name"/>
+            <h3>Mr Cooper Lewis</h3>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="founder-deatils">
+            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="name"/>
+            <h3>Mr Roberto Bishop</h3>
+            <p>Founder & MD</p>
+          </div>
+          <div class="founder-deatils">
+            <img src="https://randomuser.me/api/portraits/men/0.jpg" alt="name"/>
+            <h3>Mr Julian Horton</h3>
+            <p>Founder & Marketing</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Founders Message</h2>
+        <p class="para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat corrupti, sint tenetur optio officia impedit quas aut id qui vel velit molestiae culpa consequatur reprehenderit adipisci quidem veniam laborum dolores placeat dolorum! Aut voluptas reprehenderit delectus facere reiciendis a corporis minus</p>
+      </div>
+      <div class="order-details">
+        <div class="order-container">
+          <h3>Mile Stone</h3>
+          <p>10,00,000</p>
+        </div>
+        <div class="order-container">
+          <h3>Orders Completed</h3>
+          <p>8,00,000+</p>
+        </div>
+      </div>
+    </section>
+    <footer class="footer" id="content-footer">
+      <div class="footer-address">
+        <h3>Shopie</h3>
+        <p>Lorem ipsum dolor sit amet
+          voluptas iure!</p>
+          <h5>Pincode : 550-550-7752</h5>
+          <h5>email: shopie@myShopie.co.in</h5>
+      </div>
+      <div class="footer-copyright">
+        <h3><i class="fa-solid fa-copyright"></i> All rights are reserved</h3>
+      </div>
+      <div class="footer-socialmedia">
+        <div><a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a></div>
+        <div><a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a></div>
+        <div><a href="https://www.github.com"><i class="fa-brands fa-github"></i></a></div>
+      </div>
+    </footer>
+    <script>
+      console.log(document.cookie.split('='));
+      console.log(typeof(document.cookie));
+    </script>
+</body>
+</html>

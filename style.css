@@ -100,9 +100,21 @@ body{
 }
 
 #logout{
-  width: 30px;
+  /* width: 100%; */
+  /* max-width: 20px;
+  max-height: 20px; */
+  padding: 0.5rem;
+  background-color: rgba(232, 47, 47, 0.829);
+  transition: 0.3s ease-in-out;
+  margin-right: 0.8rem;
 }
-#popup-close{
+
+#logout:hover{
+  background-color:rgba(233, 20, 20, 1) ;
+  cursor: pointer;
+}
+
+#popup-close,#popup-close-payment,#popup-close-register{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,22 +130,23 @@ body{
   min-height: 300px;
   padding: 1.5rem;
   border-radius: 5px;
-  border: 1px solid black;
-  background-color: whitesmoke;
-  box-shadow: 5px 5px 4px rgb(217, 214, 214),-5px -5px 4px rgb(217, 214, 214);
+  border: 1px solid rgb(90, 94, 90);
+  /* background-color: whitesmoke; */
+  box-shadow: 1px -1px 19px 6px rgba(0,0,0,0.75);
+  background-color:#ffffff;
 }
 .modal::backdrop{
   background-color: lightblue;
   opacity: 0.6;
 }
-.modal #popup-close{
+.modal #popup-close,.modal #popup-close-payment, .modal #popup-close-register{
   position: absolute;
   top: 20px;
   right: 20px;
   width: 30px;
   transition: 0.2s ease-in-out;
 }
-.modal #popup-close:hover{
+.modal #popup-close:hover,.modal #popup-close-payment:hover, .modal #popup-close-register:hover{
   transform: scale(1.1);
   color: red;
 }
@@ -191,24 +204,38 @@ body{
   box-shadow: 0px 0px 10px grey,-0px -0px 10px grey;
   background-color: rgb(146, 146, 233);
 }
+
 .login-form{
   display: block;
   margin: 0.8rem auto;
   /* background-color: aquamarine; */
-  text-align: center;
+  /* text-align: center; */
   padding: 1rem 1.5rem;
 }
-.login-form label{
-  padding: 0.2rem;
-}
-.login-form input{
-  margin: 1rem;
-  border-radius: 5px; 
-  padding: 0.2rem;
+.login-form p{
+  text-align: center;
+  margin: 0.25rem;
 }
 
+fieldset{
+  margin: 0.85rem 0rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.login-form input{
+  margin: 0.5rem 0rem;
+  border-radius: 5px; 
+  padding: 0.2rem;
+  width: 100%;
+  border: 0px;
+  border-bottom: 3px solid #17A76C;
+  outline: none;
+}
+
+
 .login-btn{
-  margin: 1rem 0;
+  display: block;
+  margin: 0.5rem auto;
   padding: 0.4rem 2rem;
   font-size: 15px;
   border-radius: 5px;
@@ -424,8 +451,8 @@ body{
 }
 .nav-bar li{
   list-style: none;
-  margin: 0 1.5rem;
-  font-size: larger;
+  margin: 0 1rem;
+  font-size: 1.2rem;
   padding: 1rem;
   font-weight: 700;
 }
@@ -457,6 +484,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-height: 63vh;
 }
   
 #list .product-container{
@@ -504,11 +532,10 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
+  /* position:absolute; */
+  /* top: 0px; */
+  /* bottom: 0px; */
 }
-/* .footer > div{
-  outline: 2px solid black;
-  
-} */
 
 .search{
   height: 80px;
@@ -563,8 +590,13 @@ body{
   font-size: larger;
   font-weight: 350;
 }
+.footer-socialmedia a {
+  color: #000000;
+  text-decoration: none;
+}
+
 .fa-brands:hover{
-  transform: scale(1.8);
+  transform: scale(1.2);
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -577,14 +609,75 @@ body{
 .fa-github:hover{
   color: white;
 }
-@media screen and (max-width:1000px) {
+
+/* about page */
+
+.about-details{
+  background-color:#1b1919;
+  color: #ffffff;
+  width: 100vw;
+  /* box-sizing: border-box; */
+  padding: 1.5rem 2rem;
+}
+
+.about-details .para{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.about-details h2{
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+  word-spacing: 0.5rem;
+  letter-spacing: 0.15rem;
+  color: #25cff1b1;
+}
+
+.about-details >*{
+  margin-top: 2.5rem;
+}
+
+.founder-container{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.founder-container *{
+  margin-top:0.5rem;
+}
+
+.order-details{
+  display: flex;
+  /* background-color: #17A76C; */
+  /* background-color: #25cff1b1; */
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.order-container{
+  text-align: center;
+}
+.order-container p{
+  color: #17A76C;
+  margin-top: 0.5rem;
+}
+
+.order-container h3{
+  color: #25cff1b1;
+}
+
+
+@media screen and (max-width:1200px) {
  
   .header{
     padding: 0.6rem 0.5rem;
   }
   .nav-bar li{
-    margin: 0rem 0.5rem;
+    margin: 0.5rem;
     padding: 0.5rem;
+    font-weight: 500;
   }
   .nav-bar li a{
     margin: 0rem 0.5rem;
@@ -598,7 +691,7 @@ body{
   
 }
 
-@media screen and (max-width:675px) {
+@media screen and (max-width:900px) {
  
   .header{
     padding: 0.6rem 0.5rem;
