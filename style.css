@@ -642,8 +642,19 @@ fieldset{
   display: flex;
   justify-content: space-around;
   text-align: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  /* min-width: 150px; */
+  /* background-color: #17a76b6e; */
 }
-
+.founder-deatils{
+  min-width: 250px;
+  padding: 1rem 0rem;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 1px 4px; */
+  /* box-shadow: 0px 0px 15px 3px rgb(255,255,255); */
+  background-color: #17a76b92;
+}
 .founder-container *{
   margin-top:0.5rem;
 }
@@ -658,6 +669,8 @@ fieldset{
 
 .order-container{
   text-align: center;
+  /* background-color: #ffffff; */
+  min-width: 150px;
 }
 .order-container p{
   color: #17A76C;
